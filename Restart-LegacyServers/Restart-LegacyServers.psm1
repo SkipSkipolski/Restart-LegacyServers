@@ -35,7 +35,7 @@ Function Restart-LegacyServers{
 
     #Creating encrypted credentials for connection
     $User = "legacyreboot"
-    $Password = Get-Content "C:\Program Files\WindowsPowerShell\Modules\Restart-LegacyServers\creds.txt" | ConvertTo-SecureString
+    $Password = Get-Content "C:\\Restart-LegacyServers\creds.txt" | ConvertTo-SecureString
     $Creds = New-Object System.Management.Automation.PSCredential -ArgumentList $User, $Password
 
     Try{
@@ -62,6 +62,5 @@ Function Restart-LegacyServers{
             Write-Log "Error Rebooting VM $CurrentVM : $ErrorMsg"
         }
     }
-   # Send-MailMessage -To "alex.glasbey@paconsulting.com" -From "LegacyReboot@paconsulting.com" -Subject "Server 2000/2003 Reboot Report" -SmtpServer "SMTPSERVER" -Attachments "C:\Temp\LogFile.csv"
-    Disconnect-VIServer -Confirm:$False
+   Disconnect-VIServer -Confirm:$False
 }
